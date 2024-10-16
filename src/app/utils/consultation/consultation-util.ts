@@ -9,6 +9,35 @@ export class ConsultationUtil {
     private constructor() {
     }
 
+    public static getNumberQueriesByEmployee(employeeNames?: string[]): Map<string, number> {
+        const resultMap: Map<string, number> = new Map();
+        let consultations: ConsultationDto[];
+
+        if (!employeeNames) {
+            consultations = this.getAllConsultation()
+        } else {
+            consultations = this
+                .getAllConsultation()
+                .filter(consultation => employeeNames.includes(consultation.employee.name))
+            ;
+        }
+
+        consultations.forEach(
+            consultation => {
+                const name = consultation.employee.name;
+                let amount = resultMap.get(name);
+
+                if (!amount) {
+                    resultMap.set(name, 1)
+                } else {
+                    resultMap.set(name, amount + 1)
+                }
+            }
+        );
+
+        return resultMap;
+    }
+
     public static getAverageValuePerConsultation(consultationName?: string[]): Map<string, number> {
         const averageValues: AverageValueDto[] = [];
         let consultations: ConsultationDto[];

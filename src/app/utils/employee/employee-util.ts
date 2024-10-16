@@ -5,6 +5,11 @@ export class EmployeeUtil {
     private constructor() {
     }
 
+    public static getAllEmployeeNames(): string[] {
+        return this.getAllEmployees()
+            .map(employee => employee.name);
+    }
+
     public static findById(id: number): EmployeeDto {
         let employee = this
             .getAllEmployees()

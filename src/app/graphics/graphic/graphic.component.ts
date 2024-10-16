@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ConsultationUtil} from "../../utils/consultation/consultation-util";
 import {SpeciesUtil} from "../../utils/species/species-util";
 import {AnimalUtil} from "../../utils/animal/animal-util";
+import {EmployeeUtil} from "../../utils/employee/employee-util";
 
 @Component({
     selector: 'app-graphic',
@@ -18,6 +19,8 @@ export class GraphicComponent implements OnInit {
 
     graphicFour: any;
 
+    graphicFive: any;
+
     endDateGraphicOne!: Date;
 
     startDateGraphicOne!: Date;
@@ -26,9 +29,13 @@ export class GraphicComponent implements OnInit {
 
     consultationNameGraphicThree!: string[];
 
+    employeeNamesGraphicFive!: string[];
+
     allSpeciesNames: string[] = this.getSpeciesName();
 
     allConsultationNames: string[] = this.getConsultationNames();
+
+    allEmployeeNames: string[] = this.getEmployeeNames();
 
     public constructor() {
     }
@@ -38,6 +45,7 @@ export class GraphicComponent implements OnInit {
         this.buildGraphicTwo();
         this.buildGraphicThree();
         this.buildGraphicFour();
+        this.buildGraphicFive();
     }
 
     public modelChangedGraphicOne(): void {
@@ -50,6 +58,10 @@ export class GraphicComponent implements OnInit {
 
     public modelChangedGraphicThree(): void {
         this.buildGraphicThree();
+    }
+
+    public modelChangedGraphicFive(): void {
+        this.buildGraphicFive();
     }
 
     private buildGraphicOne(startDate: Date, endDate: Date): void {
@@ -244,6 +256,49 @@ export class GraphicComponent implements OnInit {
         };
     }
 
+    private buildGraphicFive(): void {
+        let data;
+
+        if (!this.employeeNamesGraphicFive || this.employeeNamesGraphicFive.length === 0) {
+            data = ConsultationUtil.getNumberQueriesByEmployee();
+        } else {
+            data = ConsultationUtil.getNumberQueriesByEmployee(this.employeeNamesGraphicFive)
+        }
+
+        this.graphicFive = {
+            title: {
+                text: 'Consultas por Funcionário',
+                left: 'center'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            xAxis: {
+                type: 'value'
+            },
+            yAxis: {
+                type: 'category',
+                data: [...data.keys()]
+            },
+            grid: {
+                left: '20%',
+                right: '10%',
+                bottom: '10%',
+                top: '10%'
+            },
+            series: [
+                {
+                    type: 'bar',
+                    data: [...data.values()],
+                    barWidth: '50%',
+                }
+            ]
+        };
+    }
+
     private getSpeciesName(): string[] {
         return [
             'Todos',
@@ -254,6 +309,12 @@ export class GraphicComponent implements OnInit {
     private getConsultationNames(): string[] {
         return [
             ...ConsultationUtil.getAllConsultationName()
+        ];
+    }
+
+    private getEmployeeNames(): string[] {
+        return [
+            ...EmployeeUtil.getAllEmployeeNames()
         ];
     }
 }
