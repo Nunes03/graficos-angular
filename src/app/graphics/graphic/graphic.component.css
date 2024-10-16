@@ -1,0 +1,42 @@
+.graphics {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    background-color: rgb(235, 233, 230);
+}
+
+.graphic-line {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    width: 100%;
+
+    margin-bottom: 20px;
+}
+
+.filter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    border: solid 1px gray;
+    border-radius: 8px;
+    box-shadow: -2px 2px 1px rgb(201, 200, 197);
+
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.graphic {
+    width: 50%;
+    /*height: 50%;*/
+
+    margin: 5px;
+    padding: 5px;
+
+    border: solid 3px gray;
+    border-radius: 8px;
+    box-shadow: -3px 3px 1px rgb(201, 200, 197);
+}

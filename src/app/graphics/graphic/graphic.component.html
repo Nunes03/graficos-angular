@@ -1,0 +1,65 @@
+<div class="graphics">
+    <div class="graphic-line">
+        <div class="graphic">
+            <div class="filter">
+                <div>
+                    <p-calendar
+                        [(ngModel)]="startDateGraphicOne"
+                        placeholder="Início"
+                        (ngModelChange)="modelChangedGraphicOne()">
+                    </p-calendar>
+                </div>
+
+                <div>
+                    <p-calendar
+                        [(ngModel)]="endDateGraphicOne"
+                        placeholder="Fim"
+                        (ngModelChange)="modelChangedGraphicOne()">
+                    </p-calendar>
+                </div>
+            </div>
+
+            <div echarts [options]="graphicOne"></div>
+        </div>
+
+        <div class="graphic">
+            <div class="filter">
+                <div>
+                    <p-multiSelect
+                        selectedItemsLabel="{0} consultas selecionadas"
+                        defaultLabel="Selecione"
+                        [maxSelectedLabels]="0"
+                        [options]="allSpeciesNames"
+                        [(ngModel)]="specieNameGraphicTwo"
+                        (ngModelChange)="modelChangedGraphicTwo()">
+                    </p-multiSelect>
+                </div>
+            </div>
+
+            <div echarts [options]="graphicTwo"></div>
+        </div>
+    </div>
+
+    <div class="graphic-line">
+        <div class="graphic">
+            <div class="filter">
+                <div>
+                    <p-multiSelect
+                        selectedItemsLabel="{0} consultas selecionadas"
+                        defaultLabel="Selecione"
+                        [maxSelectedLabels]="0"
+                        [options]="allConsultationNames"
+                        [(ngModel)]="consultationNameGraphicThree"
+                        (ngModelChange)="modelChangedGraphicThree()">
+                    </p-multiSelect >
+                </div>
+            </div>
+
+            <div echarts [options]="graphicThree"></div>
+        </div>
+
+        <div class="graphic">
+            <div echarts [options]="graphicFour"></div>
+        </div>
+    </div>
+</div>
