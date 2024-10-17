@@ -301,7 +301,6 @@ export class GraphicComponent implements OnInit {
 
     private getSpeciesName(): string[] {
         return [
-            'Todos',
             ...SpeciesUtil.getAllSpeciesName()
         ];
     }

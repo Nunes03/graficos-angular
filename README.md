@@ -7,5 +7,5 @@ Projeto feito em:
 * Npm 10.9.0
 
 # Executar Projeto
-Instale as versões acima para evetiar erro, após realiar o clone do projeto, rodar o comando ```npm install``` e depois só
+Instale as versões acima para evitar erro, após realizar o clone do projeto, rodar o comando ```npm install``` e depois só
 executar o projeto com o comando ```ng serve```, a aplicação rodara no seguinte local ```http://localhost:4200/```.
